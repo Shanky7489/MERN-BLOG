@@ -7,8 +7,10 @@ const createTokenAndSaveCookies = async (userId, res) => {
   });
   res.cookie("jwt", token, {
     // httpOnly: true,
+    httpOnly: false,  // for deployement bcz  Fend and Bend both are deploye defernt server or deferent DOMAIN
     secure: true,
-    sameSite: "strict",
+    // sameSite: "strict",
+    sameSite: "none", // for deployement bcz  Fend and Bend both are deploye defernt server or deferent DOMAIN
   });
 
   await User.findByIdAndUpdate(userId, { token });
